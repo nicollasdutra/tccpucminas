@@ -1,0 +1,56 @@
+﻿@model ProjetoAcademiaModel.Ferias
+
+@{
+    ViewBag.Title = "Excluir Férias";
+}
+
+<h3>Deseja realmente excluir este período de férias?</h3>
+<div>
+    <h4>Ferias</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.idAluno)
+        </dt>
+
+        <dd>
+            @ProjetoAcademiaModel.Aluno.Selecionar(Model.idAluno).nome
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dataInicio)
+        </dt>
+
+        <dd>
+            @Model.dataInicio.ToShortDateString()
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dataFim)
+        </dt>
+
+        <dd>
+            @Model.dataFim.ToShortDateString()
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Dias")
+        </dt>
+
+        <dd>
+            @Model.dataFim.Subtract(Model.dataInicio).Days
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Excluir" class="btn btn-danger" /> |
+            <a href="@Url.Action("Index", "Ferias", new { idAluno = Model.idAluno })" class="btn btn-default">
+                Voltar
+            </a>
+        </div>
+    }
+</div>

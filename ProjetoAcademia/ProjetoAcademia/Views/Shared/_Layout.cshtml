@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - TCC PUC Minas - Projeto Academia</title>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Principal", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Empregados", "Index", "Empregado")</li>
+                    <li>@Html.ActionLink("Alunos", "Index", "Aluno")</li>
+                    @*<li>@Html.ActionLink("Aulas", "About", "Home")</li>*@
+
+                    @*<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Alunos<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Cadastro", "About", "Home")</li>
+                            <li>@Html.ActionLink("Pagamento", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("Agenda de Férias", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("Avaliação Física", "Contact", "Home")</li>
+                        </ul>
+                    </li>*@
+                </ul>
+              
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - TCC PUC Minas - Projeto Academia</p>
+        </footer>
+    </div>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

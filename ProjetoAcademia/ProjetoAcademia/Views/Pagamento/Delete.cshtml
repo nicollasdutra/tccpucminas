@@ -1,0 +1,89 @@
+﻿@model ProjetoAcademiaModel.Pagamento
+
+@{
+    ViewBag.Title = "Excluir";
+}
+
+@if (ViewData["Erro"].ToString().Length > 0)
+{
+    <div class="alert alert-danger" role="alert">
+        <strong>
+            @ViewData["Erro"].ToString()
+        </strong>
+    </div>
+
+}
+else
+{
+    <div class="alert alert-warning" role="alert">
+        <strong>
+            Deseja realmente excluir este pagamento?
+        </strong>
+    </div>
+}
+
+<div>
+    <h4>Pagamento</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.idAluno)
+        </dt>
+
+        <dd>
+            @ProjetoAcademiaModel.Aluno.Selecionar(Model.idAluno).nome
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.valor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.valor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dataBaseInicio)
+        </dt>
+
+        <dd>
+            @Model.dataBaseInicio.ToShortDateString()
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dataBaseFim)
+        </dt>
+
+        <dd>
+            @Model.dataBaseFim.ToShortDateString()
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dataProxima)
+        </dt>
+
+        <dd>
+            @Model.dataProxima.ToShortDateString()
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            @if (ViewData["Erro"].ToString().Length > 0)
+            {
+                <input type="submit" value="Excluir" class="btn btn-danger" disabled="disabled" />
+            }
+            else
+            {
+                <input type="submit" value="Excluir" class="btn btn-danger" />
+            }
+             |
+            <a href="@Url.Action("Index", "Pagamento", new { idAluno = Model.idAluno })" class="btn btn-default">
+                Voltar
+            </a>
+        </div>
+    }
+</div>

@@ -1,0 +1,12 @@
+c:\users\nicollas\documents\visual studio 2013\Projects\ProjetoAcademia\ProjetoAcademiaModel\obj\Debug\ProjetoAcademiaModel.csprojResolveAssemblyReference.cache
+c:\users\nicollas\documents\visual studio 2013\Projects\ProjetoAcademia\ProjetoAcademiaModel\bin\Debug\ProjetoAcademiaModel.dll.config
+c:\users\nicollas\documents\visual studio 2013\Projects\ProjetoAcademia\ProjetoAcademiaModel\bin\Debug\ProjetoAcademiaModel.dll
+c:\users\nicollas\documents\visual studio 2013\Projects\ProjetoAcademia\ProjetoAcademiaModel\bin\Debug\ProjetoAcademiaModel.pdb
+c:\users\nicollas\documents\visual studio 2013\Projects\ProjetoAcademia\ProjetoAcademiaModel\bin\Debug\EntityFramework.dll
+c:\users\nicollas\documents\visual studio 2013\Projects\ProjetoAcademia\ProjetoAcademiaModel\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\nicollas\documents\visual studio 2013\Projects\ProjetoAcademia\ProjetoAcademiaModel\bin\Debug\EntityFramework.xml
+c:\users\nicollas\documents\visual studio 2013\Projects\ProjetoAcademia\ProjetoAcademiaModel\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\nicollas\documents\visual studio 2013\Projects\ProjetoAcademia\ProjetoAcademiaModel\obj\Debug\ProjetoAcademiaModel.dll
+c:\users\nicollas\documents\visual studio 2013\Projects\ProjetoAcademia\ProjetoAcademiaModel\obj\Debug\ProjetoAcademiaModel.pdb
+c:\users\nicollas\documents\visual studio 2013\Projects\ProjetoAcademia\ProjetoAcademiaModel\obj\Debug\ProjetoAcademiaModel.Properties.Resources.resources
+c:\users\nicollas\documents\visual studio 2013\Projects\ProjetoAcademia\ProjetoAcademiaModel\obj\Debug\ProjetoAcademiaModel.csproj.GenerateResource.Cache

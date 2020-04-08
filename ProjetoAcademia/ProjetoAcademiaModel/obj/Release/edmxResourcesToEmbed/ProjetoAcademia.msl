@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PROJETOACADEMIAModelStoreContainer" CdmEntityContainer="PROJETOACADEMIAEntities">
+    <EntitySetMapping Name="Aluno">
+      <EntityTypeMapping TypeName="PROJETOACADEMIAModel.Aluno">
+        <MappingFragment StoreEntitySet="Aluno">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="identidade" ColumnName="identidade" />
+          <ScalarProperty Name="cpf" ColumnName="cpf" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="endereco" ColumnName="endereco" />
+          <ScalarProperty Name="tipoPlano" ColumnName="tipoPlano" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Aula">
+      <EntityTypeMapping TypeName="PROJETOACADEMIAModel.Aula">
+        <MappingFragment StoreEntitySet="Aula">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="horaInicio" ColumnName="horaInicio" />
+          <ScalarProperty Name="horaFim" ColumnName="horaFim" />
+          <ScalarProperty Name="diaSemana" ColumnName="diaSemana" />
+          <ScalarProperty Name="sala" ColumnName="sala" />
+          <ScalarProperty Name="idInstrutor" ColumnName="idInstrutor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AvaliacaoFisica">
+      <EntityTypeMapping TypeName="PROJETOACADEMIAModel.AvaliacaoFisica">
+        <MappingFragment StoreEntitySet="AvaliacaoFisica">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="dataRealizacao" ColumnName="dataRealizacao" />
+          <ScalarProperty Name="anamnese" ColumnName="anamnese" />
+          <ScalarProperty Name="dobrasCutaneas" ColumnName="dobrasCutaneas" />
+          <ScalarProperty Name="exameErgonometrico" ColumnName="exameErgonometrico" />
+          <ScalarProperty Name="idFisioterapeuta" ColumnName="idFisioterapeuta" />
+          <ScalarProperty Name="idAluno" ColumnName="idAluno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Empregado">
+      <EntityTypeMapping TypeName="PROJETOACADEMIAModel.Empregado">
+        <MappingFragment StoreEntitySet="Empregado">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="identidade" ColumnName="identidade" />
+          <ScalarProperty Name="cpf" ColumnName="cpf" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="aulaGrupo" ColumnName="aulaGrupo" />
+          <ScalarProperty Name="aulaMusculacao" ColumnName="aulaMusculacao" />
+          <ScalarProperty Name="senha" ColumnName="senha" />
+          <ScalarProperty Name="idPerfil" ColumnName="idPerfil" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pagamento">
+      <EntityTypeMapping TypeName="PROJETOACADEMIAModel.Pagamento">
+        <MappingFragment StoreEntitySet="Pagamento">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idAluno" ColumnName="idAluno" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="dataProxima" ColumnName="dataProxima" />
+          <ScalarProperty Name="dataBaseInicio" ColumnName="dataBaseInicio" />
+          <ScalarProperty Name="dataBaseFim" ColumnName="dataBaseFim" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RegistraPresenca">
+      <EntityTypeMapping TypeName="PROJETOACADEMIAModel.RegistraPresenca">
+        <MappingFragment StoreEntitySet="RegistraPresenca">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="dataHora" ColumnName="dataHora" />
+          <ScalarProperty Name="idAula" ColumnName="idAula" />
+          <ScalarProperty Name="idAluno" ColumnName="idAluno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoPerfil">
+      <EntityTypeMapping TypeName="PROJETOACADEMIAModel.TipoPerfil">
+        <MappingFragment StoreEntitySet="TipoPerfil">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoPlano">
+      <EntityTypeMapping TypeName="PROJETOACADEMIAModel.TipoPlano">
+        <MappingFragment StoreEntitySet="TipoPlano">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ferias">
+      <EntityTypeMapping TypeName="PROJETOACADEMIAModel.Ferias">
+        <MappingFragment StoreEntitySet="Ferias">
+          <ScalarProperty Name="dataBaseFimPagamento" ColumnName="dataBaseFimPagamento" />
+          <ScalarProperty Name="dataFim" ColumnName="dataFim" />
+          <ScalarProperty Name="dataInicio" ColumnName="dataInicio" />
+          <ScalarProperty Name="idAluno" ColumnName="idAluno" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

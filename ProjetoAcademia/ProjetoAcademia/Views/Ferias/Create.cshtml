@@ -1,0 +1,78 @@
+﻿@model ProjetoAcademiaModel.Ferias
+
+@{
+    ViewBag.Title = "Novo Período de Férias";
+}
+
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+<script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Novo Período de Férias</h4>
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(model => model.idAluno, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" value="@Model.idAluno" id="idAluno" name="idAluno" readonly="readonly" style="width:5%" />&emsp;<input type="text" value="@ProjetoAcademiaModel.Aluno.Selecionar(Model.idAluno).nome" readonly="readonly" style="width:40%" />&emsp;<input type="text" value="PLANO @ProjetoAcademiaModel.TipoPlano.Selecionar(ProjetoAcademiaModel.Aluno.Selecionar(Model.idAluno).tipoPlano).descricao" readonly="readonly" style="width:20%" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.dataInicio, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" id="dataInicio" name="dataInicio" value="@Model.dataInicio.ToShortDateString()" style="width:20%" />
+                @Html.ValidationMessageFor(model => model.dataInicio)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.dataFim, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" id="dataFim" name="dataFim" value="@Model.dataFim.ToShortDateString()" style="width:20%" />
+                @Html.ValidationMessageFor(model => model.dataFim)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Salvar" class="btn btn-primary" /> |
+                <a href="@Url.Action("Index", "Ferias", new { idAluno = Model.idAluno })" class="btn btn-default">
+                    Voltar
+                </a>
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    $(function () {
+        $("#dataInicio").datepicker({
+            dateFormat: 'dd/mm/yy',
+            dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
+            dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+            dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+            monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+        });
+    });
+
+    $(function () {
+        $("#dataFim").datepicker({
+            dateFormat: 'dd/mm/yy',
+            dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
+            dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+            dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+            monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+        });
+    });
+
+</script>

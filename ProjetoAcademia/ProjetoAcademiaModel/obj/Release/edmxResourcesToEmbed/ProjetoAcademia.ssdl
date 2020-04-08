@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PROJETOACADEMIAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Aluno">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="identidade" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="cpf" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="nome" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="endereco" Type="varchar" MaxLength="1000" Nullable="false" />
+    <Property Name="tipoPlano" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Aula">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nome" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="horaInicio" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="horaFim" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="diaSemana" Type="int" Nullable="false" />
+    <Property Name="sala" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="idInstrutor" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AvaliacaoFisica">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="dataRealizacao" Type="datetime" Nullable="false" />
+    <Property Name="anamnese" Type="varchar" MaxLength="1000" Nullable="false" />
+    <Property Name="dobrasCutaneas" Type="varchar" MaxLength="1000" Nullable="false" />
+    <Property Name="exameErgonometrico" Type="varchar" MaxLength="1000" Nullable="false" />
+    <Property Name="idFisioterapeuta" Type="int" Nullable="false" />
+    <Property Name="idAluno" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Empregado">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="identidade" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="cpf" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="nome" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="aulaGrupo" Type="bit" Nullable="false" />
+    <Property Name="aulaMusculacao" Type="bit" Nullable="false" />
+    <Property Name="senha" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="idPerfil" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ferias">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idAluno" Type="int" Nullable="false" />
+    <Property Name="dataInicio" Type="smalldatetime" Nullable="false" />
+    <Property Name="dataFim" Type="smalldatetime" Nullable="false" />
+    <Property Name="dataBaseFimPagamento" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pagamento">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idAluno" Type="int" Nullable="false" />
+    <Property Name="valor" Type="money" Nullable="false" />
+    <Property Name="dataProxima" Type="smalldatetime" Nullable="false" />
+    <Property Name="dataBaseInicio" Type="smalldatetime" Nullable="false" />
+    <Property Name="dataBaseFim" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RegistraPresenca">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="dataHora" Type="datetime" Nullable="false" />
+    <Property Name="idAula" Type="int" Nullable="false" />
+    <Property Name="idAluno" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipoPerfil">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descricao" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipoPlano">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descricao" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="valor" Type="money" Nullable="false" />
+  </EntityType>
+  <Association Name="fk_idAlunoAvaliacao">
+    <End Role="Aluno" Type="Self.Aluno" Multiplicity="1" />
+    <End Role="AvaliacaoFisica" Type="Self.AvaliacaoFisica" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Aluno">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AvaliacaoFisica">
+        <PropertyRef Name="idAluno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_idAlunoFerias">
+    <End Role="Aluno" Type="Self.Aluno" Multiplicity="1" />
+    <End Role="Ferias" Type="Self.Ferias" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Aluno">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Ferias">
+        <PropertyRef Name="idAluno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_idAlunoPagamento">
+    <End Role="Aluno" Type="Self.Aluno" Multiplicity="1" />
+    <End Role="Pagamento" Type="Self.Pagamento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Aluno">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Pagamento">
+        <PropertyRef Name="idAluno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_idAlunoRegistro">
+    <End Role="Aluno" Type="Self.Aluno" Multiplicity="1" />
+    <End Role="RegistraPresenca" Type="Self.RegistraPresenca" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Aluno">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RegistraPresenca">
+        <PropertyRef Name="idAluno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_idAulaRegistro">
+    <End Role="Aula" Type="Self.Aula" Multiplicity="1" />
+    <End Role="RegistraPresenca" Type="Self.RegistraPresenca" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Aula">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RegistraPresenca">
+        <PropertyRef Name="idAula" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_idFisioterapeuta">
+    <End Role="Empregado" Type="Self.Empregado" Multiplicity="1" />
+    <End Role="AvaliacaoFisica" Type="Self.AvaliacaoFisica" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empregado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AvaliacaoFisica">
+        <PropertyRef Name="idFisioterapeuta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_idInstrutor">
+    <End Role="Empregado" Type="Self.Empregado" Multiplicity="1" />
+    <End Role="Aula" Type="Self.Aula" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empregado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Aula">
+        <PropertyRef Name="idInstrutor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_idPerfilEmpregado">
+    <End Role="TipoPerfil" Type="Self.TipoPerfil" Multiplicity="1" />
+    <End Role="Empregado" Type="Self.Empregado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoPerfil">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Empregado">
+        <PropertyRef Name="idPerfil" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tipoPlanoAluno">
+    <End Role="TipoPlano" Type="Self.TipoPlano" Multiplicity="1" />
+    <End Role="Aluno" Type="Self.Aluno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoPlano">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Aluno">
+        <PropertyRef Name="tipoPlano" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PROJETOACADEMIAModelStoreContainer">
+    <EntitySet Name="Aluno" EntityType="Self.Aluno" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Aula" EntityType="Self.Aula" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AvaliacaoFisica" EntityType="Self.AvaliacaoFisica" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Empregado" EntityType="Self.Empregado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ferias" EntityType="Self.Ferias" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pagamento" EntityType="Self.Pagamento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RegistraPresenca" EntityType="Self.RegistraPresenca" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoPerfil" EntityType="Self.TipoPerfil" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoPlano" EntityType="Self.TipoPlano" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_idAlunoAvaliacao" Association="Self.fk_idAlunoAvaliacao">
+      <End Role="Aluno" EntitySet="Aluno" />
+      <End Role="AvaliacaoFisica" EntitySet="AvaliacaoFisica" />
+    </AssociationSet>
+    <AssociationSet Name="fk_idAlunoFerias" Association="Self.fk_idAlunoFerias">
+      <End Role="Aluno" EntitySet="Aluno" />
+      <End Role="Ferias" EntitySet="Ferias" />
+    </AssociationSet>
+    <AssociationSet Name="fk_idAlunoPagamento" Association="Self.fk_idAlunoPagamento">
+      <End Role="Aluno" EntitySet="Aluno" />
+      <End Role="Pagamento" EntitySet="Pagamento" />
+    </AssociationSet>
+    <AssociationSet Name="fk_idAlunoRegistro" Association="Self.fk_idAlunoRegistro">
+      <End Role="Aluno" EntitySet="Aluno" />
+      <End Role="RegistraPresenca" EntitySet="RegistraPresenca" />
+    </AssociationSet>
+    <AssociationSet Name="fk_idAulaRegistro" Association="Self.fk_idAulaRegistro">
+      <End Role="Aula" EntitySet="Aula" />
+      <End Role="RegistraPresenca" EntitySet="RegistraPresenca" />
+    </AssociationSet>
+    <AssociationSet Name="fk_idFisioterapeuta" Association="Self.fk_idFisioterapeuta">
+      <End Role="Empregado" EntitySet="Empregado" />
+      <End Role="AvaliacaoFisica" EntitySet="AvaliacaoFisica" />
+    </AssociationSet>
+    <AssociationSet Name="fk_idInstrutor" Association="Self.fk_idInstrutor">
+      <End Role="Empregado" EntitySet="Empregado" />
+      <End Role="Aula" EntitySet="Aula" />
+    </AssociationSet>
+    <AssociationSet Name="fk_idPerfilEmpregado" Association="Self.fk_idPerfilEmpregado">
+      <End Role="TipoPerfil" EntitySet="TipoPerfil" />
+      <End Role="Empregado" EntitySet="Empregado" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tipoPlanoAluno" Association="Self.fk_tipoPlanoAluno">
+      <End Role="TipoPlano" EntitySet="TipoPlano" />
+      <End Role="Aluno" EntitySet="Aluno" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

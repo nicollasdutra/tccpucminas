@@ -1,0 +1,90 @@
+﻿@model ProjetoAcademiaModel.Aluno
+
+@{
+    ViewBag.Title = "Excluir Aluno";
+}
+
+@if (ViewData["Erro"].ToString().Length > 0)
+{
+    <div class="alert alert-danger" role="alert">
+        <strong>
+            @ViewData["Erro"].ToString()
+        </strong>
+    </div>
+
+}
+else
+{
+    <div class="alert alert-warning" role="alert">
+        <strong>
+            Deseja realmente excluir este aluno?
+        </strong>
+    </div>
+}
+
+<div>
+    <h4>Excluir Aluno</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.identidade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.identidade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cpf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cpf)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.endereco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.endereco)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipoPlano)
+        </dt>
+
+        <dd>
+            @ProjetoAcademiaModel.TipoPlano.Selecionar(Model.tipoPlano).descricao
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+
+            @if (ViewData["Erro"].ToString().Length > 0)
+            {
+                <input type="submit" value="Excluir" class="btn btn-danger" disabled="disabled"/>
+            }
+            else
+            {
+                <input type="submit" value="Excluir" class="btn btn-danger" />
+            }
+            |
+            <a href="@Url.Action("Index", "Aluno")" class="btn btn-default">
+                Voltar
+            </a>
+        </div>
+    }
+</div>

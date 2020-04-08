@@ -1,0 +1,77 @@
+﻿@model IEnumerable<ProjetoAcademiaModel.Ferias>
+
+@{
+    ViewBag.Title = "Férias";
+}
+<br />
+
+
+
+@if (ViewData["Erro"].ToString().Trim().Length==0)
+{
+    <h4>Férias de @ProjetoAcademiaModel.Aluno.Selecionar(int.Parse(ViewData["idAluno"].ToString())).nome</h4>
+
+    <p>
+        @Html.ActionLink("Novas Férias", "Create", new { idAluno = int.Parse(ViewData["idAluno"].ToString()) })
+    </p>
+}
+else
+{
+    
+    <div class="alert alert-danger" role="alert">
+        <strong>
+            @ViewData["Erro"].ToString().Trim()          
+        </strong>
+    </div>
+}
+
+<table class="table">
+    <tr>
+        <th style="width:40%">
+            @Html.DisplayNameFor(model => model.idAluno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dataInicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dataFim)
+        </th>
+        <th>
+            @Html.DisplayName("Dias")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="width:40%">
+                @ProjetoAcademiaModel.Aluno.Selecionar(item.idAluno).nome
+            </td>
+            <td>
+                @item.dataInicio.ToShortDateString()
+            </td>
+            <td>
+                @item.dataFim.ToShortDateString()
+            </td>
+            <td>
+                @item.dataFim.Subtract(item.dataInicio).Days
+            </td>
+            <td>
+                <a href="~/Ferias/Details?id=@item.id" style="text-decoration:none" title="Visualizar">
+                    <span class="btn btn-xs btn-success"><span class="glyphicon glyphicon-search"></span> </span>
+                </a>
+                |
+                <a href="~/Ferias/Delete?id=@item.id" style="text-decoration:none" title="Excluir">
+                    <span class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span> </span>
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br />
+<p>
+    @Html.ActionLink("Voltar", "Index","Aluno")
+</p>

@@ -1,0 +1,112 @@
+﻿@model ProjetoAcademiaModel.Aluno
+
+@{
+    ViewBag.Title = "Visualizar";
+}
+
+<div>
+    <h4>Aluno</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.identidade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.identidade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cpf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cpf)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.endereco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.endereco)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipoPlano)
+        </dt>
+
+        <dd>
+            @ProjetoAcademiaModel.TipoPlano.Selecionar(Model.tipoPlano).descricao
+        </dd>
+        @if (ProjetoAcademiaModel.Pagamento.SelecionarTodos(Model.id).Count > 0)
+        {
+            <dt>
+                <b>Contrato Atual</b>
+            </dt>
+            <dd>
+
+            </dd>
+            <dt>
+                @Html.DisplayName("Data Inicial")
+            </dt>
+
+            <dd>
+                @ProjetoAcademiaModel.Pagamento.SelecionarTodos(Model.id).OrderByDescending(x => x.dataBaseFim).ToList()[0].dataBaseInicio.ToShortDateString()
+            </dd>
+            <dt>
+                @Html.DisplayName("Data Final")
+            </dt>
+
+            <dd>
+                @ProjetoAcademiaModel.Pagamento.SelecionarTodos(Model.id).OrderByDescending(x => x.dataBaseFim).ToList()[0].dataBaseFim.ToShortDateString()
+            </dd>
+            <dt>
+                @Html.DisplayName("Próximo Pagamento")
+            </dt>
+
+            <dd>
+                @ProjetoAcademiaModel.Pagamento.SelecionarTodos(Model.id).OrderByDescending(x => x.dataBaseFim).ToList()[0].dataProxima.ToShortDateString()
+            </dd>
+
+            List<ProjetoAcademiaModel.Ferias> lista = ProjetoAcademiaModel.Ferias.SelecionarTodos(Model.id, ProjetoAcademiaModel.Pagamento.SelecionarTodos(Model.id).OrderByDescending(x => x.dataBaseFim).ToList()[0].dataBaseFim);
+            int qtd = 0;
+            if (lista.Count > 0)
+            {
+                for (int i = 0; i < lista.Count; i++)
+                {
+                    qtd = qtd + lista[i].dataFim.Subtract(lista[i].dataInicio).Days;
+                }
+            }
+            
+            <dt>
+                @Html.DisplayName("Quantidade férias")
+            </dt>
+            <dd>
+                @qtd
+            </dd>
+        }
+
+</div>
+
+<div class="form-actions no-color">
+    <a href="@Url.Action("Index", "Aluno")" style="width:10%" class="btn btn-default">
+        Voltar
+    </a>
+    |
+    <a href="@Url.Action("Index", "Pagamento", new { idAluno = Model.id })" style="width:10%" class="btn btn-warning">
+        Pagamentos
+    </a>
+    |
+    <a href="@Url.Action("Index", "Ferias", new { idAluno = Model.id })" style="width:10%" class="btn btn-primary">
+        Férias
+    </a>
+</div>
